@@ -1,34 +1,39 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 
-export default function About() {
-  const toggleVisibilityMode = () => {
-    // console.log("dark mode enabled");
-    if(presentButtonValue === "Enable Dark Mode"){
-      setPresentStyle(myDarkStyle);
-      setPresentButtonValue("Enable Light Mode");
-    }
-    else {
-      setPresentStyle(myLightStyle);
-      setPresentButtonValue("Enable Dark Mode");
-    }
-  };
+export default function About(props) {
+  // const toggleVisibilityMode = () => {
+  //   // console.log("dark mode enabled");
+  //   if(presentButtonValue === "Enable Dark Mode"){
+  //     setPresentStyle(myDarkStyle);
+  //     setPresentButtonValue("Enable Light Mode");
+  //   }
+  //   else {
+  //     setPresentStyle(myLightStyle);
+  //     setPresentButtonValue("Enable Dark Mode");
+  //   }
+  // };
 
-  const myDarkStyle = {
-    color : "white",
-    backgroundColor : "black",
-    border : '1px solid white'
-  };
+  // const myDarkStyle = {
+  //   color : "white",
+  //   backgroundColor : "black",
+  //   border : '1px solid white'
+  // };
 
-  const myLightStyle = {
-    color : "black",
-    backgroundColor : "white"
-  };
+  // const myLightStyle = {
+  //   color : "black",
+  //   backgroundColor : "white"
+  // };
+
+  let presentStyle = {
+    backgroundColor: props.mode === "dark" ? "rgb(36 74 104)": "white",
+    color : props.mode === "dark" ? "white":"rgb(36 74 104)"
+  }
 
   // state for dark mode style changes
-  const [presentStyle, setPresentStyle] = useState(myLightStyle);
+  //const [presentStyle, setPresentStyle] = useState(myLightStyle);
 
   // state for button values
-  const [presentButtonValue, setPresentButtonValue] = useState("Enable Dark Mode");
+ // const [presentButtonValue, setPresentButtonValue] = useState("Enable Dark Mode");
 
   return (
     <div className="container" style={presentStyle}>
@@ -131,11 +136,11 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="container">
+      {/* <div className="container">
         <button className="btn btn-dark my-3" onClick={toggleVisibilityMode}>
           {presentButtonValue}
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

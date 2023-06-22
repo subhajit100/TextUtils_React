@@ -2,11 +2,7 @@ import React, {useState} from "react";
 
 export default function TextForm(props) {
     const getWordsLength = () => {
-      var wordLength = text.split(" ").length;
-      if(text === "" || text.charAt(text.length-1)=== " "){
-        wordLength--;
-      }
-      return wordLength;
+      return text.split(/\s+/).filter(element => element.length!==0).length;
     };
 
     const handleUpClick = () => {
@@ -62,20 +58,20 @@ export default function TextForm(props) {
       <div className="container">
         <h1 style={{color: props.mode === 'light'? 'black': 'white'}}>{props.heading}</h1>
         <div className="mb-3">
-          <textarea className="form-control" id="myBox" rows="2" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'light'? 'white': 'grey', color: props.mode === 'light'? 'black': 'white'}}></textarea>
+          <textarea className="form-control" id="myBox" rows="2 " value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'light'? 'white': '#13466e', color: props.mode === 'light'? 'black': 'white'}}></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UPPER CASE</button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to lower case</button>
-        <button className="btn btn-primary mx-2" onClick={handleCapClick}>Convert to Capitalised Case</button>
-        <button className="btn btn-primary mx-2" onClick={handleInvClick}>Convert to iNVERSE cASE</button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear text</button>
+        <button className="btn btn-primary mx-2 my-1" disabled={text.length === 0} onClick={handleUpClick}>Convert to UPPER CASE</button>
+        <button className="btn btn-primary mx-2 my-1" disabled={text.length === 0} onClick={handleLoClick}>Convert to lower case</button>
+        <button className="btn btn-primary mx-2 my-1" disabled={text.length === 0} onClick={handleCapClick}>Convert to Capitalised Case</button>
+        <button className="btn btn-primary mx-2 my-1" disabled={text.length === 0} onClick={handleInvClick}>Convert to iNVERSE cASE</button>
+        <button className="btn btn-primary mx-2 my-1" disabled={text.length === 0} onClick={handleClearClick}>Clear text</button>
       </div>
       <div className="container my-4" style={{color: props.mode === 'light'? 'black': 'white'}}>
         <h2>Your submit summary</h2>
         <p><b>{getWordsLength()}</b> words, <b>{text.length}</b> characters</p>
         <p> <b>{(0.008 * getWordsLength()).toFixed(3)}</b> Minutes read</p>
         <h2>Preview</h2>
-        <p>{text.length>0? text: "Enter text in the above textarea to preview it here"}</p>
+        <p>{text.length>0? text: "Nothing to preview"}</p>
       </div>
     </>
   );
